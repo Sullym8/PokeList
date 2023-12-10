@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vote</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <script>
+  </script>
+  <body>
+    <h1>Vote!</h1>
+    <a href="/">Home</a>
+    <a href="/tierlist">Tier List</a>
+
+    <p>Fill out this form and cast your vote.</p>
+    <form>
+        <fieldset>
+            <legend>Details</legend>
+            Firstname: 
+            <input type="text" placeholder="Ash" name="firstname" id="firstnamt">
+            <br>
+            <br>
+            Lastname:
+            <input type="text" placeholder="Ketchum" name="lastname" id="lastname">
+            <br>
+            <br>
+            UID:
+            <input type="text" placeholder="696969696" name="uid"  id="uid">
+        </fieldset>
+        <br>
+        <fieldset>
+            <legend>Pokemon</legend>
+            Name:
+            <select name="currPokemon" id="currPokemon">
+                <option value="Pikachu">Pikachu</option>
+            </select>
+            OR <br><br>
+            Search:
+            <input type="text" placeholder="Pikachu" name="searchPokemon" id="searchPokemon">
+            <br><br>
+            <input type="button" value="Load Pokemon!">
+        </fieldset>
+        <img src="https://upload.wikimedia.org/wikipedia/en/a/a6/Pok%C3%A9mon_Pikachu_art.png" alt="">
+        <p>Pikachu</p>
+        <br>
+        <input type="submit" value="Cast my vote!">
+    </form>
+  </body>
+</html>
