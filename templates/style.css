@@ -1,0 +1,103 @@
+img{
+    /*image 1 */
+
+    position: absolute;
+    width: 399px;
+    height: 461px;
+    left: 130px;
+    top: 100px;
+
+    background: url(thNh-1PXKMngskyPlYOZZ5tklyxqOhT6bNmraga92mg-removebg-preview.png);
+    z-index: 2; 
+
+  }
+  .elipse{
+    /* Ellipse 1 */
+
+    position: absolute;
+    width: 657px;
+    height: 657px;
+    left: 774px;
+    top: 50px;
+
+    background: #FF757C;
+    border-radius: 50%; /* Makes the div an ellipse */
+    z-index: 1;
+
+  }
+  h1{
+    /* UMD Pokemon Rating List! */
+
+      position: absolute;
+      width: 478px;
+      height: 154px;
+      left: 106px;
+      top: 200px;
+
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 900;
+      font-size: 64px;
+      line-height: 77px;
+
+      color: #000000;
+
+
+  }
+  p{
+    /* See what UMD has to say about it’s favorite Pokemon. Vote now and see where your favorite Pokemon lands! */
+
+    position: absolute;
+    width: 510px;
+    height: 48px;
+    left: 106px;
+    top: 390px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 24px;
+
+    color: #000000;
+
+
+  }
+  .group1, .group2 {
+  
+    position: absolute;
+    top: 478px;
+    height: 84px;
+    background: #FF747C;
+    border-radius: 49px;
+    text-align: center; 
+}
+
+.group1 {
+    left: 106px;
+    width: 154px;
+}
+
+.group2 {
+    left: 284px;
+    width: 248px;
+}
+
+.group1 button, .group2 button {
+   
+    width: 100%; 
+    height: 100%;
+    background: inherit; 
+    border: none;
+    border-radius: inherit; 
+    color: black; 
+    font-size: 20px; 
+    cursor: pointer; 
+}
+
+
+.group1 button:hover, .group2 button:hover {
+    background-color: #FF6268; 
+}
+
+
