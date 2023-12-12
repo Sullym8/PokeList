@@ -22,6 +22,8 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.set("views", path.resolve(__dirname, "templates"));
 app.set("view engine", "ejs");
 
+app.use(express.static(__dirname + '/templates'));
+
 
 app.get("/", (request, response) => {
     response.render("home")

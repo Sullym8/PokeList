@@ -3,31 +3,45 @@
   <head>
     <meta charset="UTF-8" />
     <title>UMD PokeList</title>
-    <link rel="stylesheet" href="/templates/style.css">
+    <link rel="stylesheet" href="/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   </head>
 
   <script>
     function vote() {
-        location.href = "/vote"
+      location.href = "/vote";
     }
     function tierlist() {
-        location.href = "/tierlist"
+      location.href = "/tierlist";
     }
+
+    window.onload = async function () {
+      const resp = await fetch(
+        `https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random() * 1000)}`
+      );
+      const randData = await resp.json();
+
+      const randImage = document.getElementById("randPokemonImage");
+      randImage.src = randData.sprites.other["official-artwork"].front_default;
+    };
   </script>
   <body>
     <h1>UMD Pokemon Rating List!</h1>
-    <p>See what UMD has to say about it’s favorite Pokemon. <br>
-    Vote now and see where your favorite Pokemon lands!</p>
+    <p>
+      See what UMD has to say about it’s favorite Pokemon. <br />
+      Vote now and see where your favorite Pokemon lands!
+    </p>
     <div class="group1">
-    <button onclick="vote()">Vote</button>
+      <button onclick="vote()">Vote</button>
     </div>
     <div class="group2">
-    <button onclick="tierlist()">View Tier List</button>
+      <button onclick="tierlist()">View Tier List</button>
     </div>
     <div class="elipse">
-    <img src="https://cosplayfu-website.s3.amazonaws.com/_Upload/b/30cm-Charizard-Pokemon-Plush-Toy.jpg" >
+      <img src="/randImageStarter.png" id="randPokemonImage" />
     </div>
   </body>
 </html>

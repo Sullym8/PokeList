@@ -1,3 +1,7 @@
+* {
+  font-family: 'Inter', sans-serif;
+}
+
 img{
     /*image 1 */
 
@@ -34,9 +38,9 @@ img{
       left: 106px;
       top: 200px;
 
-      font-family: 'Inter';
+      /* font-family: 'Inter';
       font-style: normal;
-      font-weight: 900;
+      font-weight: 900; */
       font-size: 64px;
       line-height: 77px;
 
@@ -48,14 +52,13 @@ img{
     /* See what UMD has to say about it’s favorite Pokemon. Vote now and see where your favorite Pokemon lands! */
 
     position: absolute;
-    width: 510px;
     height: 48px;
     left: 106px;
     top: 390px;
 
-    font-family: 'Inter';
+    /* font-family: 'Inter';
     font-style: normal;
-    font-weight: 300;
+    font-weight: 300; */
     font-size: 20px;
     line-height: 24px;
 
