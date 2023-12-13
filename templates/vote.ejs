@@ -65,9 +65,27 @@
 	}
   </style>
   <script defer>
+	let pokemonLoaded = false;
+
+	window.onsubmit = function() {
+
+		let voterFName = document.getElementById("firstname").value;
+		let voterLName = document.getElementById("lastname").value;
+		let voterUID = document.getElementById("uid").value;
+		
+		if (!pokemonLoaded || voterFName.length === 0 || voterLName.length === 0 || voterUID.length === 0) {
+			window.alert("Make sure you have entered all voter detailed and selected a Pokemon buy clicking the load details button!")
+			return false;
+		}
+
+
+	}
+
 	window.onload = async function() {
 		const resp = await fetch("https://pokeapi.co/api/v2/pokemon/?limit=1000");
 		const json = await resp.json()
+		pokemonLoaded = false;
+
 
 		const pokemonSelector = document.getElementById("currPokemon");
 		options = "<>";
@@ -84,6 +102,7 @@
 		const pokemonSearch = document.getElementById("searchPokemon").value;
 
 		const image = document.getElementById("currPokemonImage");
+		const url = document.getElementById("url");
 		const title = document.getElementById("currPokemonName");
 
 
@@ -94,19 +113,21 @@
 		if (pokemonSearch.length > 0) {
 			if (!(await searchResp.ok)) {
 				window.alert("Please enter a valid Pokemon name, or leave the search field empty to choose from the list.")
+				pokemonLoaded = false;
 			} else {
 				pokemonData = await searchResp.json()
 				image.src = pokemonData.sprites.other['official-artwork'].front_default;
 				title.innerHTML = pokemonData.name;
+				url.value = image.src;
+				pokemonLoaded = false;
 			}
 		} else {
 			pokemonData = await resp.json()
 			image.src = pokemonData.sprites.other['official-artwork'].front_default;
 			title.innerHTML = pokemonData.name;
+			url.value = image.src;
+			pokemonLoaded = true;
 		}
-
-		
-
 	}
 
   </script>
@@ -119,11 +140,11 @@
 	</div>
 
 	<p>Fill out this form and cast your vote.</p>
-	<form>
+	<form action="/processVote" method="post">
 	  <fieldset>
 		<legend>Details</legend>
 		Firstname:
-		<input type="text" placeholder="Ash" name="firstname" id="firstnamt" />
+		<input type="text" placeholder="Ash" name="firstname" id="firstname" />
 		<br />
 		Lastname:
 		<input
@@ -145,11 +166,7 @@
 		</select>
 		OR <br /><br />
 		Search:
-		<input
-		  type="text"
-		  placeholder="Pikachu"
-		  name="searchPokemon"
-		  id="searchPokemon"
+		<input type="text" placeholder="Pikachu" name="searchPokemon" id="searchPokemon"
 		/>
 		<br /><br />
 		<div class="group1">
@@ -161,6 +178,7 @@
 		id="currPokemonImage"
 	  />
 	  <p id="currPokemonName">Choose a Pokemon!</p>
+	  <input type="text" readonly id="url" name="url">
 	  <br />
 	  <div class="group2">
 		<input type="submit" value="Cast my vote!" />
