@@ -7,9 +7,8 @@ const { MongoClient, ServerApiVersion } = require('mongodb');
 const path = require("path");
 require("dotenv").config({ path: path.resolve(__dirname, "vars/.env") }) 
 
-console.log(process.env.MONGO_CONNECTION_STRING);
-
 const uri = process.env.MONGO_CONNECTION_STRING;
+console.log(uri);
 const databaseAndCollection = {db: process.env.MONGO_DB_NAME, 
     collectionVotes: process.env.MONGO_COLLECTION_VOTES, 
     collectionCount: process.env.MONGO_COLLECTION_COUNT};
