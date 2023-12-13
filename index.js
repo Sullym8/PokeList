@@ -37,8 +37,7 @@ app.get("/vote", (req, res) => {
 
 app.post("/processVote", async (req, res) => {
     addPokemonVote(req.body);
-    // console.log(req.body);
-    res.redirect("/tierlist");
+    res.redirect("/");
 })
 
 app.get("/tierlist", async (req, res) => {
@@ -96,7 +95,7 @@ async function generateTierList() {
     let c_tier = [];
     let d_tier = [];
     let e_tier = [];
-    let output = "<table><tr><th>Tier</th><th>Pokemon</th></tr>";
+    let output = "<table>";
     
     const client = new MongoClient(uri, {serverApi: ServerApiVersion.v1 });
 
@@ -108,13 +107,13 @@ async function generateTierList() {
         totalCount.map(pokemon => {
             let percentage = Number(pokemon.count) / totalVotes;
             console.log(`${pokemon.currPokemon} ${percentage}`)
-            if (percentage > 0.834) {
+            if (percentage > 0.95) {
                 s_tier.push(pokemon.url);
-            } else if (percentage > 0.668) {
+            } else if (percentage > 0.84) {
                 a_tier.push(pokemon.url);
-            } else if (percentage > 0.502) {
+            } else if (percentage > 0.50) {
                 b_tier.push(pokemon.url);
-            } else if (percentage > 0.336) {
+            } else if (percentage > 0.32) {
                 c_tier.push(pokemon.url)
             } else if (percentage > 0.16) {
                 d_tier.push(pokemon.url)
@@ -125,42 +124,41 @@ async function generateTierList() {
 
         
 
-        output += "<tr><td>S Tier</td>";
+        output += "<tr><td class = 'tier' id = 'S'>S</td><td>";
         s_tier.forEach(pokemon => {
-            output += `<td><img src = '${pokemon}'></td>`
+            output += `<img src = '${pokemon}'>`
         })
-        output += "</tr>"
+        output += "</td></tr>"
 
-        output += "<tr><td>A Tier</td>";
+        output += "<tr><td class = 'tier' id = 'A'>A</td><td>";
         a_tier.forEach(pokemon => {
-            output += `<td><img src = '${pokemon}'></td>`
+            output += `<img src = '${pokemon}'>`
         })
-        output += "</tr>"
+        output += "</td></tr>"
 
-        output += "<tr><td>B Tier</td>";
+        output += "<tr><td class = 'tier' id = 'B'>B</td><td>";
         b_tier.forEach(pokemon => {
-            output += `<td><img src = '${pokemon}'></td>`
+            output += `<img src = '${pokemon}'>`
         })
-        output += "</tr>"
+        output += "</td></tr>"
 
-        output += "<tr><td>C Tier</td>";
+        output += "<tr><td class = 'tier' id = 'C'>C</td><td>";
         c_tier.forEach(pokemon => {
-            output += `<td><img src = '${pokemon}'></td>`
+            output += `<img src = '${pokemon}'>`
         })
-        output += "</tr>"
+        output += "</td></tr>"
 
-        output += "<tr><td>D Tier</td>";
+        output += "<tr><td class = 'tier' id = 'D'>D</td><td>";
         d_tier.forEach(pokemon => {
-            output += `<td><img src = '${pokemon}'></td>`
+            output += `<img src = '${pokemon}'>`
         })
-        output += "</tr>"
+        output += "</td></tr>"
 
-        output += "<tr><td>E Tier</td>";
+        output += "<tr><td class = 'tier' id = 'E'>E</td><td>";
         e_tier.forEach(pokemon => {
-            output += `<td><img src = '${pokemon}'></td>`
+            output += `<img src = '${pokemon}'>`
         })
-        output += "</tr>"
-
+        output += "</td></tr>"
         output += "</table>"
         return output;
         

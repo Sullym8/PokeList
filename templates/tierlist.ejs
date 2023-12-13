@@ -1,47 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <title>UMD PokeList</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<meta charset="UTF-8" />
+	<title>UMD PokeList</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   </head>
   <style>
-  * {
-  font-family: 'Inter', sans-serif;
-}
-img {
-      height: 5rem;
-      transition: transform 0.2s;
+	body {
+      padding: 1rem;
     }
-    img:hover {
-      transform: scale(1.2);
+	table {
+		border-spacing: 1rem;
+		width: 70%;
+	}
+  	* {
+		font-family: 'Inter', sans-serif;
+	}
+	img {
+		height: 5rem;
+		transition: transform 0.2s;
+	}
+	img:hover {
+		transform: scale(1.2);
+	}
+
+	tr > td {
+		height: 5rem;
+	}
+
+	td {
+		text-align: center;
+	}
+
+	.tier {
+		width: 5rem;
+		border-radius: 1rem;
+		border: 0.25rem solid black;
+		font-weight: bold;
+	}
+
+	#S {
+		background-color: #FF757C;
+	}
+
+	#A {
+		background-color: #FFCB8F;
+	}
+
+	#B {
+		background-color: #FFFB94;
+	}
+
+	#C {
+		background-color: #BCFFB6;
+	}
+
+	#D {
+		background-color: #DDFFFD;
+	}
+
+	#E {
+		background-color: #B5A9FF;
+	}
+
+	#display {
+		display: flex;
+		justify-content: center;
+	}
+
+	.header {
+      display: flex;
+      justify-content: space-between;
     }
+
+    .links {
+      display: flex;
+      padding-top: 1.5rem;
+    }
+
+	a {
+      padding: 1rem;
+      height: 1rem;
+      border-radius: 2rem;
+      background-color: #FF747C;
+    }
+
+    a:hover {
+      background-color: #FF6268; 
+    }
+
+    a:any-link {
+      color: black;
+      text-decoration: none;
+    }
+
   </style>
   <script>
 
   </script>
   <body>
-    <h1>Tier List</h1>
-    <a href="/">Home</a>
-    <a href="/vote">Vote</a>
-    <%- table %>
-    <!-- <table>
-        <tr><th>S</th><td>
-            <img src="https://upload.wikimedia.org/wikipedia/en/a/a6/Pok%C3%A9mon_Pikachu_art.png" alt="">
-            <img src="https://upload.wikimedia.org/wikipedia/en/a/a6/Pok%C3%A9mon_Pikachu_art.png" alt="">
-            <img src="https://upload.wikimedia.org/wikipedia/en/a/a6/Pok%C3%A9mon_Pikachu_art.png" alt="">
-        </td></tr>
-        <tr><th>A</th><td></td></tr>
-        <tr><th>B</th><td></td></tr>
-        <tr><th>C</th><td></td></tr>
-        <tr><th>D</th><td>
-            <img src="https://upload.wikimedia.org/wikipedia/en/a/a6/Pok%C3%A9mon_Pikachu_art.png" alt="">
-            <img src="https://upload.wikimedia.org/wikipedia/en/a/a6/Pok%C3%A9mon_Pikachu_art.png" alt="">
-        </td></tr>
-        <tr><th>E</th><td></td></tr>
-    </table> -->
+	<div class="header">
+		<div>
+		  <h1>UMD Pokemon Tierlist</h1>
+		  <p>See what UMD has to say about it's favorite pokemon!</p>
+		</div>
+		<div class="links">
+		  <a href="/">Home</a>
+		  &nbsp;
+		  <a href="/vote">Vote</a>
+		</div>
+	  </div>
+	<div id="display">
+		<%- table %>
+	</div>
   </body>
 </html>
