@@ -1,188 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-	<meta charset="UTF-8" />
-	<title>Vote</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <title>Vote</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <style>
-	fieldset {
-	  /*border: 5px solid #000; /* Solid black border */
-	  border-radius: 15px; /* Rounded corners */
-	  padding: 20px; /* Padding inside the fieldset */
-	  /* Margin for spacing around the fieldset */
-	}
-	.group1,
-	.group2 {
-	  background: #ff747c;
-	  border-radius: 49px;
-	  text-align: center;
-	  position: relative; /* This is required if you want to use 'left' property */
-	}
+    * {
+      font-family: "Inter", sans-serif;
+    }
+    body {
+      padding: 1rem;
+    }
+    fieldset {
+      /*border: 5px solid #000; /* Solid black border */
+      border-radius: 1rem; /* Rounded corners */
+      /* Margin for spacing around the fieldset */
+    }
+    legend {
+      font-weight: bold;
+    }
 
-	.group1 {
-	  width: 154px;
-	}
-	.top-right {
-	  position: absolute; /* or 'fixed' if you want it to stay at the top right when scrolling */
-	  top: 20px;
-	  right: 100px;
-	  font-size: 20px;
-	  margin: 10px; /* Optional: to give some space from the edges */
-	}
-	.group2 {
-	  left: 284px;
-	  width: 248px;
-	}
+    .header {
+      display: flex;
+      justify-content: space-between;
+    }
 
-	input[type="button"],
-	input[type="submit"] {
-	  width: 100%;
-	  height: 48px; /* Set a specific height */
-	  background: inherit;
-	  border: none;
-	  border-radius: inherit;
-	  color: black;
-	  font-size: 20px;
-	  cursor: pointer;
-	}
+    .links {
+      display: flex;
+      padding-top: 1.5rem;
+    }
 
-	input[type="button"]:hover,
-	input[type="submit"]:hover {
-	  background-color: #ff6268; /* Darker shade on hover */
-	}
+    a {
+      font-weight: bold;
+    }
 
-	input[type="text"] {
-	  /* Make inputs block elements to take full width */
-	  margin: 10px 0; /* Margin for spacing between inputs */
-	  /* Padding inside the inputs */
-	  border: 1px solid #ccc; /* Light grey border for the inputs */
-	  border-radius: 5px; /* Slightly rounded corners for the inputs */
-	}
+    .group2 {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2rem;
+    }
 
-	img {
-		height: 20rem;
-	}
+    /* .group1 {
+      width: 154px;
+    } */
+    .top-right {
+      position: absolute; /* or 'fixed' if you want it to stay at the top right when scrolling */
+      top: 20px;
+      right: 100px;
+      font-size: 20px;
+      margin: 10px; /* Optional: to give some space from the edges */
+    }
+
+    input[type="button"],
+    input[type="submit"] {
+      /* width: 100%; */
+      padding: 1rem;
+      /* height: 48px; */
+      background: #ff747c;
+      border: none;
+      border-radius: 10rem;
+      color: black;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    input[type="button"]:hover,
+    input[type="submit"]:hover {
+      background-color: #ff6268; /* Darker shade on hover */
+    }
+
+    input[type="text"] {
+      /* Make inputs block elements to take full width */
+      margin: 10px 0; /* Margin for spacing between inputs */
+      /* Padding inside the inputs */
+      border: 1px solid #ccc; /* Light grey border for the inputs */
+      border-radius: 5px; /* Slightly rounded corners for the inputs */
+    }
+
+    img {
+      height: 20rem;
+      transition: transform 0.2s;
+    }
+    img:hover {
+      transform: scale(1.05);
+    }
   </style>
   <script defer>
-	let pokemonLoaded = false;
+    let pokemonLoaded = false;
 
-	window.onsubmit = function() {
+    window.onsubmit = function () {
+      let voterFName = document.getElementById("firstname").value;
+      let voterLName = document.getElementById("lastname").value;
+      let voterUID = document.getElementById("uid").value;
 
-		let voterFName = document.getElementById("firstname").value;
-		let voterLName = document.getElementById("lastname").value;
-		let voterUID = document.getElementById("uid").value;
-		
-		if (!pokemonLoaded || voterFName.length === 0 || voterLName.length === 0 || voterUID.length === 0) {
-			window.alert("Make sure you have entered all voter detailed and selected a Pokemon buy clicking the load details button!")
-			return false;
-		}
+      if (
+        !pokemonLoaded ||
+        voterFName.length === 0 ||
+        voterLName.length === 0 ||
+        voterUID.length === 0
+      ) {
+        window.alert(
+          "Make sure you have entered all voter detailed and selected a Pokemon buy clicking the load details button!"
+        );
+        return false;
+      }
+    };
 
+    window.onload = async function () {
+      const resp = await fetch("https://pokeapi.co/api/v2/pokemon/?limit=1000");
+      const json = await resp.json();
+      pokemonLoaded = false;
 
-	}
+      const pokemonSelector = document.getElementById("currPokemon");
+      options = "<>";
+      json.results.map((pokemon) => {
+        options += `<option value='${pokemon.name}'>${pokemon.name}</option>`;
+      });
 
-	window.onload = async function() {
-		const resp = await fetch("https://pokeapi.co/api/v2/pokemon/?limit=1000");
-		const json = await resp.json()
-		pokemonLoaded = false;
+      pokemonSelector.innerHTML = options;
+    };
 
+    async function loadPokemonDetails() {
+      const pokemonName = document.getElementById("currPokemon").value;
+      const pokemonSearch = document.getElementById("searchPokemon").value;
 
-		const pokemonSelector = document.getElementById("currPokemon");
-		options = "<>";
-		json.results.map((pokemon) => {
-			options += `<option value='${pokemon.name}'>${pokemon.name}</option>`
-		})
+      const image = document.getElementById("currPokemonImage");
+      const url = document.getElementById("url");
+      const title = document.getElementById("currPokemonName");
 
-		pokemonSelector.innerHTML = options;
+      let resp = await fetch(
+        `https://pokeapi.co/api/v2/pokemon/${pokemonName}`
+      );
+      let searchResp = await fetch(
+        `https://pokeapi.co/api/v2/pokemon/${pokemonSearch}`
+      );
+      let pokemonData;
 
-	}
-
-	async function loadPokemonDetails() {
-		const pokemonName = document.getElementById("currPokemon").value;
-		const pokemonSearch = document.getElementById("searchPokemon").value;
-
-		const image = document.getElementById("currPokemonImage");
-		const url = document.getElementById("url");
-		const title = document.getElementById("currPokemonName");
-
-
-		let resp = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
-		let searchResp = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonSearch}`);
-		let pokemonData;
-
-		if (pokemonSearch.length > 0) {
-			if (!(await searchResp.ok)) {
-				window.alert("Please enter a valid Pokemon name, or leave the search field empty to choose from the list.")
-				pokemonLoaded = false;
-			} else {
-				pokemonData = await searchResp.json()
-				image.src = pokemonData.sprites.other['official-artwork'].front_default;
-				title.innerHTML = pokemonData.name;
-				url.value = image.src;
-				pokemonLoaded = false;
-			}
-		} else {
-			pokemonData = await resp.json()
-			image.src = pokemonData.sprites.other['official-artwork'].front_default;
-			title.innerHTML = pokemonData.name;
-			url.value = image.src;
-			pokemonLoaded = true;
-		}
-	}
-
+      if (pokemonSearch.length > 0) {
+        if (!(await searchResp.ok)) {
+          window.alert(
+            "Please enter a valid Pokemon name, or leave the search field empty to choose from the list."
+          );
+          pokemonLoaded = false;
+        } else {
+          pokemonData = await searchResp.json();
+          image.src =
+            pokemonData.sprites.other["official-artwork"].front_default;
+          title.innerHTML = pokemonData.name;
+          url.value = image.src;
+          pokemonLoaded = false;
+        }
+      } else {
+        pokemonData = await resp.json();
+        image.src = pokemonData.sprites.other["official-artwork"].front_default;
+        title.innerHTML = pokemonData.name;
+        url.value = image.src;
+        pokemonLoaded = true;
+      }
+    }
   </script>
   <body>
-	<h1>Vote!</h1>
-	<div class="top-right">
-	  <a href="/">Home</a>
-	  &nbsp;
-	  <a href="/tierlist">Tier List</a>
-	</div>
+    <div class="header">
+      <div>
+        <h1>Vote!</h1>
+        <p>Fill out this form and cast your vote.</p>
+      </div>
+      <div class="links">
+        <a href="/">Home</a>
+        &nbsp;
+        <a href="/tierlist">Tier List</a>
+      </div>
+    </div>
 
-	<p>Fill out this form and cast your vote.</p>
-	<form action="/processVote" method="post">
-	  <fieldset>
-		<legend>Details</legend>
-		Firstname:
-		<input type="text" placeholder="Ash" name="firstname" id="firstname" />
-		<br />
-		Lastname:
-		<input
-		  type="text"
-		  placeholder="Ketchum"
-		  name="lastname"
-		  id="lastname"
-		/>
-		<br />
-		UID:
-		<input type="text" placeholder="696969696" name="uid" id="uid" />
-	  </fieldset>
-	  <br />
-	  <fieldset>
-		<legend>Pokemon</legend>
-		Name:
-		<select name="currPokemon" id="currPokemon">
-		  <option value="pikachu">Pikachu</option>
-		</select>
-		OR <br /><br />
-		Search:
-		<input type="text" placeholder="Pikachu" name="searchPokemon" id="searchPokemon"
-		/>
-		<br /><br />
-		<div class="group1">
-		  <input type="button" value="Load Pokemon!" onclick="loadPokemonDetails()"/>
-		</div>
-	  </fieldset>
-	  <img
-		src="/randImageStarter.png"
-		id="currPokemonImage"
-	  />
-	  <p id="currPokemonName">Choose a Pokemon!</p>
-	  <input type="text" readonly id="url" name="url">
-	  <br />
-	  <div class="group2">
-		<input type="submit" value="Cast my vote!" />
-	  </div>
-	</form>
+    <form action="/processVote" method="post">
+      <fieldset>
+        <legend>Details</legend>
+        Firstname:
+        <input type="text" placeholder="Ash" name="firstname" id="firstname" />
+        <br />
+        Lastname:
+        <input
+          type="text"
+          placeholder="Ketchum"
+          name="lastname"
+          id="lastname"
+        />
+        <br />
+        UID:
+        <input type="text" placeholder="696969696" name="uid" id="uid" />
+      </fieldset>
+      <br />
+      <fieldset>
+        <legend>Pokemon</legend>
+        Name:
+        <select name="currPokemon" id="currPokemon">
+          <option value="pikachu">Pikachu</option>
+        </select>
+        OR <br /><br />
+        Search:
+        <input
+          type="text"
+          placeholder="Pikachu"
+          name="searchPokemon"
+          id="searchPokemon"
+        />
+        <br />
+        <div class="group1">
+          <input
+            type="button"
+            value="Load Pokemon!"
+            onclick="loadPokemonDetails()"
+          />
+        </div>
+      </fieldset>
+      <div class="group2">
+        <img src="/randImageStarter.png" id="currPokemonImage" />
+        <p id="currPokemonName">Choose a Pokemon!</p>
+        <input type="text" readonly id="url" name="url" />
+        <br />
+        <input type="submit" value="Cast my vote!" />
+      </div>
+    </form>
   </body>
 </html>

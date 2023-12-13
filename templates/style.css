@@ -10,10 +10,14 @@ img{
     height: 461px;
     left: 130px;
     top: 100px;
+    transition: transform 0.2s;
 
     background: url(thNh-1PXKMngskyPlYOZZ5tklyxqOhT6bNmraga92mg-removebg-preview.png);
     z-index: 2; 
 
+  }
+  img:hover {
+    transform: scale(1.2);
   }
   .elipse{
     /* Ellipse 1 */
