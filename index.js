@@ -7,6 +7,7 @@ const { MongoClient, ServerApiVersion } = require('mongodb');
 const path = require("path");
 require("dotenv").config({ path: path.resolve(__dirname, "vars/.env") }) 
 
+console.log(process.env.MONGO_CONNECTION_STRING);
 
 const uri = process.env.MONGO_CONNECTION_STRING;
 const databaseAndCollection = {db: process.env.MONGO_DB_NAME, 
@@ -24,7 +25,7 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.set("views", path.resolve(__dirname, "templates"));
 app.set("view engine", "ejs");
 
-app.use(express.static(__dirname + '/templates'));
+app.use(express.static(__dirname + '/public'));
 
 
 app.get("/", (request, response) => {
