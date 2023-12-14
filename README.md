@@ -7,8 +7,8 @@ PokeList is a web-hosted tierlist for UMD Students to vote for their favorite Po
 
 ## Authors
 
-- [@Sullym8](https://www.github.com/Sullym8)
-- [@Parmar18](https://www.github.com/parmar18)
+- Samar Khan UID: 117818291 [@Sullym8](https://www.github.com/Sullym8)
+- Siddharthsinh Parmar UID: 118378114 [@Parmar18](https://www.github.com/parmar18)
 
 ## APIs Used
 - [PokeAPI](https://pokeapi.co/)
