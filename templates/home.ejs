@@ -5,9 +5,13 @@
     <title>UMD PokeList</title>
     <link rel="stylesheet" href="/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   </head>
 
   <script>
@@ -29,19 +33,25 @@
     };
   </script>
   <body>
-    <h1>UMD Pokemon Tierlist!</h1>
-    <p>
-      See what UMD has to say about it’s favorite Pokemon. <br />
-      Vote now and see where your favorite Pokemon lands!
-    </p>
-    <div class="group1">
-      <button onclick="vote()">Vote</button>
-    </div>
-    <div class="group2">
-      <button onclick="tierlist()">View Tierlist</button>
-    </div>
-    <div class="elipse">
-      <img src="/randImageStarter.png" id="randPokemonImage" />
+    <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 2rem; height: 100%; align-items: center;">
+      <div>
+        <h1>UMD Pokemon Tierlist!</h1>
+        <p>
+          See what UMD has to say about it’s favorite Pokemon. <br />
+          Vote now and see where your favorite Pokemon lands!
+        </p>
+		<div style="display: flex; gap: 1rem;">
+			<div class="group1">
+				<button onclick="vote()">Vote</button>
+			  </div>
+			  <div class="group2">
+				<button onclick="tierlist()">View Tierlist</button>
+			  </div>
+		</div>
+      </div>
+        <div class="elipse">
+          <img src="/randImageStarter.png" id="randPokemonImage" />
+        </div>
     </div>
   </body>
 </html>

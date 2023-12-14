@@ -10,6 +10,8 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
       rel="stylesheet"
     />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
   </head>
   <style>
     * {
@@ -158,6 +160,7 @@
         );
         return false;
       }
+      
       return true;
     };
 
@@ -203,7 +206,7 @@
           image.src =
             pokemonData.sprites.other["official-artwork"].front_default;
           title.innerHTML = pokemonData.name;
-          url.value = image.src;
+          url.value = image.src
           pokemonLoaded = true;
           document.getElementById("currPokemon").value = pokemonSearch;
         }
