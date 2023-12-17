@@ -24,3 +24,10 @@ PokeList is a web-hosted tierlist for UMD Students to vote for their favorite Po
 - Vote for any Pokemon with your UID!
 - Dynamic Tierlist
 
+## Video
+
+YouTube video link: https://www.youtube.com/watch?v=XSacJBaEZOU
+
+## Hosted on Render!
+
+Hosted website: https://umd-pokelist.onrender.com/
